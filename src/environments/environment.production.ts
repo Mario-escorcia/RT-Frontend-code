@@ -2,5 +2,5 @@
 // or replace apiUrl with the absolute backend URL (and add it to CORS_ORIGIN on the backend).
 export const environment = {
   production: true,
-  apiUrl: '/api',
+  apiUrl: 'https://rt-backend-code.onrender.com',
 };
