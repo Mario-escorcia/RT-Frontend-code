@@ -183,6 +183,7 @@ export const es = {
   search: {
     placeholder: '¿Qué quieres investigar? Ej. energía solar en Colombia',
     submit: 'Investigar',
+    upload : 'Cargar mis fuentes',
     title: '¿Qué quieres entender hoy?',
     subtitle:
       'Investigamos en fuentes confiables, verificamos su credibilidad y te entregamos un informe visual con métricas, gráficos y análisis.',

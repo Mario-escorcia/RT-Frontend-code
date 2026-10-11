@@ -187,7 +187,7 @@ type ActivityMetric = 'searches' | 'time';
           </section>
 
           <!-- Activity + categories -->
-          <section class="grid gap-4 lg:grid-cols-3">
+          <section class="grid gap-4 lg:grid-cols-3 overflow-x-auto">
             <app-chart-card
               class="lg:col-span-2"
               [heading]="activityTitle() | t"
@@ -210,7 +210,7 @@ type ActivityMetric = 'searches' | 'time';
           </section>
 
           <!-- Heatmap + peak hours -->
-          <section class="grid gap-4 lg:grid-cols-3">
+          <section class="grid gap-4 lg:grid-cols-3 overflow-x-auto">
             <div class="surface-card p-5 lg:col-span-2">
               <div class="flex flex-wrap items-start justify-between gap-2">
                 <div>
@@ -282,7 +282,7 @@ type ActivityMetric = 'searches' | 'time';
                       </div>
                       <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-muted">
                         <div
-                          class="h-full rounded-full bg-[var(--chart-primary)] transition-[width] duration-500"
+                          class="h-full rounded-full bg-(--chart-primary) transition-[width] duration-500"
                           [style.width.%]="(topic.count / topTopicMax()) * 100"
                         ></div>
                       </div>

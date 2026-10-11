@@ -27,6 +27,7 @@ import {
   ShieldCheck,
   Sparkles,
   X,
+  Plus
 } from 'lucide';
 import { API_URL } from '../../core/api.service';
 import { AuthService } from '../../core/auth.service';
@@ -57,7 +58,9 @@ import { Icon } from '../../ui/icon';
             <div class="flex items-start justify-between gap-4">
               <div class="min-w-0">
                 <p class="eyebrow">{{ 'search.running.eyebrow' | t }}</p>
-                <h1 class="mt-2 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">{{ store.topic() }}</h1>
+                <h1 class="mt-2 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+                  {{ store.topic() }}
+                </h1>
                 <p class="mt-2 text-sm text-muted-foreground tabular">
                   {{ 'search.running.elapsed' | t: { s: elapsed() } }} · {{ store.percent() }}%
                 </p>
@@ -104,8 +107,11 @@ import { Icon } from '../../ui/icon';
                 <p class="eyebrow">{{ 'search.running.queries' | t }}</p>
                 <ul class="mt-3 flex flex-wrap gap-2">
                   @for (query of store.queries(); track $index) {
-                    <li class="inline-flex animate-fade-up items-center gap-1.5 rounded-full bg-muted px-3 py-1 text-xs">
-                      <svg appIcon [icon]="icons.Search" class="size-3 text-muted-foreground"></svg>{{ query }}
+                    <li
+                      class="inline-flex animate-fade-up items-center gap-1.5 rounded-full bg-muted px-3 py-1 text-xs"
+                    >
+                      <svg appIcon [icon]="icons.Search" class="size-3 text-muted-foreground"></svg
+                      >{{ query }}
                     </li>
                   }
                 </ul>
@@ -114,14 +120,25 @@ import { Icon } from '../../ui/icon';
 
             @if (store.sources().length) {
               <div class="mt-8">
-                <p class="eyebrow">{{ 'search.running.sources' | t: { n: store.sources().length } }}</p>
+                <p class="eyebrow">
+                  {{ 'search.running.sources' | t: { n: store.sources().length } }}
+                </p>
                 <ul class="mt-3 grid gap-2 sm:grid-cols-2">
                   @for (source of store.sources(); track source.url) {
-                    <li class="flex animate-fade-up items-center gap-2.5 rounded-lg border border-border px-3 py-2">
-                      <img [src]="favicon(source.domain)" alt="" class="size-4 rounded-sm" loading="lazy" />
+                    <li
+                      class="flex animate-fade-up items-center gap-2.5 rounded-lg border border-border px-3 py-2"
+                    >
+                      <img
+                        [src]="favicon(source.domain)"
+                        alt=""
+                        class="size-4 rounded-sm"
+                        loading="lazy"
+                      />
                       <span class="min-w-0">
                         <span class="block truncate text-xs font-medium">{{ source.title }}</span>
-                        <span class="block truncate text-[11px] text-muted-foreground">{{ source.domain }}</span>
+                        <span class="block truncate text-[11px] text-muted-foreground">{{
+                          source.domain
+                        }}</span>
                       </span>
                     </li>
                   }
@@ -130,16 +147,26 @@ import { Icon } from '../../ui/icon';
             }
           </div>
         </div>
-        <p class="mt-4 text-center text-xs text-muted-foreground">{{ 'search.running.hint' | t }}</p>
+        <p class="mt-4 text-center text-xs text-muted-foreground">
+          {{ 'search.running.hint' | t }}
+        </p>
       </section>
     } @else {
       <!-- Search form -->
-      <section class="mx-auto flex max-w-3xl flex-col items-center pt-6 text-center sm:pt-14 animate-fade-up">
-        <span class="flex size-12 items-center justify-center rounded-2xl border border-border bg-card shadow-sm">
+      <section
+        class="mx-auto flex max-w-4xl flex-col items-center pt-6 text-center sm:pt-14 animate-fade-up"
+      >
+        <span
+          class="flex size-12 items-center justify-center rounded-2xl border border-border bg-card shadow-sm"
+        >
           <svg appIcon [icon]="icons.Sparkles" class="size-5"></svg>
         </span>
-        <h1 class="mt-6 text-3xl font-semibold tracking-tight text-balance sm:text-5xl">{{ 'search.title' | t }}</h1>
-        <p class="mt-4 max-w-xl text-[0.9375rem] text-muted-foreground text-pretty">{{ 'search.subtitle' | t }}</p>
+        <h1 class="mt-6 text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
+          {{ 'search.title' | t }}
+        </h1>
+        <p class="mt-4 max-w-xl text-[0.9375rem] text-muted-foreground text-pretty">
+          {{ 'search.subtitle' | t }}
+        </p>
 
         @if (store.status() === 'error' && store.error(); as error) {
           <div
@@ -151,13 +178,15 @@ import { Icon } from '../../ui/icon';
               <p class="text-sm font-medium">{{ errorTitle(error.code) | t }}</p>
               <p class="mt-0.5 text-xs text-muted-foreground">{{ error.message }}</p>
             </div>
-            <button uiBtn variant="outline" size="sm" (click)="retry()">{{ 'common.retry' | t }}</button>
+            <button uiBtn variant="outline" size="sm" (click)="retry()">
+              {{ 'common.retry' | t }}
+            </button>
           </div>
         }
 
-        <form class="mt-8 w-full" (submit)="submit($event)">
+        <form class="mt-8 w-full flex items-center gap-2 flex-wrap md:flex-nowrap " (submit)="submit($event)">
           <div
-            class="flex items-center gap-2 rounded-2xl border border-input bg-card p-2 shadow-sm transition-[border-color,box-shadow] focus-within:border-ring focus-within:ring-4 focus-within:ring-ring/15"
+            class="flex-1 flex items-center gap-2 rounded-2xl border border-input bg-card p-2 shadow-sm transition-[border-color,box-shadow] focus-within:border-ring focus-within:ring-4 focus-within:ring-ring/15"
           >
             <svg appIcon [icon]="icons.Search" class="ml-2 size-5 text-muted-foreground"></svg>
             <input
@@ -169,21 +198,40 @@ import { Icon } from '../../ui/icon';
               maxlength="200"
               class="h-11 min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground"
             />
-            <button uiBtn size="lg" type="submit" class="rounded-xl" [disabled]="topic.trim().length < 2">
+            <button
+              uiBtn
+              size="lg"
+              type="submit"
+              class="rounded-xl"
+              [disabled]="topic.trim().length < 2"
+            >
               <span class="hidden sm:inline">{{ 'search.submit' | t }}</span>
               <svg appIcon [icon]="icons.ArrowRight" class="size-4"></svg>
             </button>
           </div>
+          <button
+            uiBtn
+            size="lg"
+            type="button"
+            class="rounded-xl w-full md:w-auto"
+          >
+            <span class="sm:inline">{{ 'search.upload' | t }}</span>
+            <svg appIcon [icon]="icons.Plus" class="size-4"></svg>
+          </button>
         </form>
 
-        <div class="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+        <div
+          class="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground"
+        >
           <span class="inline-flex items-center gap-1.5">
             <svg appIcon [icon]="icons.Globe" class="size-3.5"></svg>
             {{ 'search.languageHint' | t }}
           </span>
           @if (health.hasValue() ? health.value() : null; as status) {
             <span aria-hidden="true">·</span>
-            <span>{{ (status.provider === 'claude' ? 'engine.claudeLong' : 'engine.openDataLong') | t }}</span>
+            <span>{{
+              (status.provider === 'claude' ? 'engine.claudeLong' : 'engine.openDataLong') | t
+            }}</span>
           }
         </div>
 
@@ -218,7 +266,9 @@ import { Icon } from '../../ui/icon';
                     ></svg>
                     <span class="min-w-0 flex-1">
                       <span class="block truncate text-sm">{{ event.topic }}</span>
-                      <span class="block text-xs text-muted-foreground">{{ ago(event.createdAt) }}</span>
+                      <span class="block text-xs text-muted-foreground">{{
+                        ago(event.createdAt)
+                      }}</span>
                     </span>
                   </button>
                 </li>
@@ -231,7 +281,9 @@ import { Icon } from '../../ui/icon';
               <div class="rounded-xl border border-border p-4">
                 <svg appIcon [icon]="feature.icon" class="size-4"></svg>
                 <p class="mt-3 text-sm font-medium">{{ feature.title | t }}</p>
-                <p class="mt-1 text-xs leading-relaxed text-muted-foreground">{{ feature.body | t }}</p>
+                <p class="mt-1 text-xs leading-relaxed text-muted-foreground">
+                  {{ feature.body | t }}
+                </p>
               </div>
             }
           </div>
@@ -261,11 +313,25 @@ export class SearchPage {
     CircleAlert,
     History,
     BookmarkCheck,
+    Plus
   };
-  protected readonly steps = ['search.steps.find', 'search.steps.verify', 'search.steps.analyze', 'search.steps.visualize'];
+  protected readonly steps = [
+    'search.steps.find',
+    'search.steps.verify',
+    'search.steps.analyze',
+    'search.steps.visualize',
+  ];
   protected readonly features = [
-    { icon: ShieldCheck, title: 'search.features.sources.title', body: 'search.features.sources.body' },
-    { icon: ChartNoAxesCombined, title: 'search.features.charts.title', body: 'search.features.charts.body' },
+    {
+      icon: ShieldCheck,
+      title: 'search.features.sources.title',
+      body: 'search.features.sources.body',
+    },
+    {
+      icon: ChartNoAxesCombined,
+      title: 'search.features.charts.title',
+      body: 'search.features.charts.body',
+    },
     { icon: BookmarkCheck, title: 'search.features.save.title', body: 'search.features.save.body' },
   ];
 
@@ -277,8 +343,13 @@ export class SearchPage {
   });
   protected readonly suggestions = computed(() => SUGGESTIONS[this.i18n.lang()]);
   protected readonly health = httpResource<Health>(() => `${API_URL}/health`);
-  private readonly recent = httpResource<EventSummary[]>(() => ({ url: `${API_URL}/events`, params: { limit: 6 } }));
-  protected readonly recentEvents = computed(() => (this.recent.hasValue() ? this.recent.value() : []));
+  private readonly recent = httpResource<EventSummary[]>(() => ({
+    url: `${API_URL}/events`,
+    params: { limit: 6 },
+  }));
+  protected readonly recentEvents = computed(() =>
+    this.recent.hasValue() ? this.recent.value() : [],
+  );
 
   constructor() {
     // A finished research from a previous visit should not redirect again.
@@ -295,7 +366,8 @@ export class SearchPage {
 
     // Expired session during a research: back to the login screen.
     effect(() => {
-      if (this.store.error()?.code === 'unauthorized') untracked(() => this.auth.handleUnauthorized());
+      if (this.store.error()?.code === 'unauthorized')
+        untracked(() => this.auth.handleUnauthorized());
     });
 
     effect(() => {
@@ -331,7 +403,9 @@ export class SearchPage {
   }
 
   protected errorTitle(code: string) {
-    return this.i18n.maybe(`errors.research.${code}`) ? `errors.research.${code}` : 'errors.research.generic';
+    return this.i18n.maybe(`errors.research.${code}`)
+      ? `errors.research.${code}`
+      : 'errors.research.generic';
   }
 
   protected favicon(domain: string) {
@@ -343,6 +417,8 @@ export class SearchPage {
   }
 
   protected openEvent(event: EventSummary) {
-    this.router.navigate(event.savedSearchId ? ['/library', event.savedSearchId] : ['/research', event.id]);
+    this.router.navigate(
+      event.savedSearchId ? ['/library', event.savedSearchId] : ['/research', event.id],
+    );
   }
 }

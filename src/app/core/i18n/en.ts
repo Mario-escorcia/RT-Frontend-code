@@ -17,7 +17,8 @@ export const en: Dictionary = {
   },
   auth: {
     tagline: 'Research any topic. Understand it with data.',
-    taglineSub: 'Verified sources, metrics and charts in a single report, plus a dashboard that tracks how your knowledge grows.',
+    taglineSub:
+      'Verified sources, metrics and charts in a single report, plus a dashboard that tracks how your knowledge grows.',
     features: {
       sources: 'Reliable sources with a credibility score',
       charts: 'Visual reports instead of walls of text',
@@ -100,7 +101,8 @@ export const en: Dictionary = {
     label: 'Label',
   },
   dashboard: {
-    subtitle: 'Your knowledge hub: what you have researched, how much, and how your curiosity evolves.',
+    subtitle:
+      'Your knowledge hub: what you have researched, how much, and how your curiosity evolves.',
     greeting: {
       morning: 'Good morning, {name}',
       afternoon: 'Good afternoon, {name}',
@@ -148,7 +150,8 @@ export const en: Dictionary = {
     },
     heatmap: {
       title: 'Activity map',
-      subtitle: 'Last 6 months · active {n} day in the last 30|Last 6 months · active {n} days in the last 30',
+      subtitle:
+        'Last 6 months · active {n} day in the last 30|Last 6 months · active {n} days in the last 30',
       longest: 'Best streak: {n} day|Best streak: {n} days',
       less: 'Less',
       more: 'More',
@@ -184,6 +187,7 @@ export const en: Dictionary = {
   search: {
     placeholder: 'What do you want to research? e.g. solar energy in Colombia',
     submit: 'Research',
+    upload: 'Upload my sources',
     title: 'What do you want to understand today?',
     subtitle:
       'We research reliable sources, check their credibility and deliver a visual report with metrics, charts and analysis.',
@@ -366,7 +370,8 @@ export const en: Dictionary = {
     source: 'Source',
     sourcesLabel: 'Sources:',
     chartsNote: 'Figures taken from the cited sources. Switch to table view to see the exact data.',
-    pulseNote: 'Real, measurable signals: public interest on Wikipedia and impact in scholarly literature.',
+    pulseNote:
+      'Real, measurable signals: public interest on Wikipedia and impact in scholarly literature.',
     pulse: {
       interest: 'Public interest',
       interestNote: 'Monthly Wikipedia article views · average {avg}/month.',
